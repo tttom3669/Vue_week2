@@ -2,7 +2,6 @@ const { createApp } = Vue;
 const app = {
     // 資料
     data() {
-        //data 是一個 function
         return {
             url: "https://vue3-course-api.hexschool.io/v2",
             path: "tttom3669",
@@ -11,26 +10,24 @@ const app = {
         }
     },
     methods: {
+        //檢查登入狀況
         checkLogin() {
             //取出token
             const token = document.cookie.replace(/(?:(?:^|.*;\s*)myToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
             // headers夾帶token (有儲存時)
             axios.defaults.headers.common['Authorization'] = token;
             axios.post(`${this.url}/api/user/check`).then((res) => {
-                console.log(res);
+                //console.log(res);
                 this.render();
-
             }).catch((err) => {
-                console.log(err);
+                //console.log(err);
                 alert('請重新登入');
             });
         },
         getProducts() {
             axios.get(`${this.url}/api/${this.path}/admin/products`).then((res) => {
-                console.log(res);
+                //console.log(res);
                 this.products = res.data.products;
-                console.log(this.products);
-                console.log(this.products.length);
             }).catch((err) => {
                 console.log(err);
             });
