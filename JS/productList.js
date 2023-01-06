@@ -17,16 +17,14 @@ const app = {
             // headers夾帶token (有儲存時)
             axios.defaults.headers.common['Authorization'] = token;
             axios.post(`${this.url}/api/user/check`).then((res) => {
-                //console.log(res);
                 this.render();
             }).catch((err) => {
-                //console.log(err);
                 alert('請重新登入');
+                window.location = 'login.html';
             });
         },
         getProducts() {
             axios.get(`${this.url}/api/${this.path}/admin/products`).then((res) => {
-                //console.log(res);
                 this.products = res.data.products;
             }).catch((err) => {
                 console.log(err);

@@ -15,12 +15,10 @@ const app = {
             axios.post(`${url}/admin/signin`, this.user).then((res) => {
                 alert(res.data.message);
                 const { token, expired } = res.data;
-                //console.log(token, expired);
                 // 把token和時效存在cookie中
                 document.cookie = `myToken=${token}; expires=${new Date(expired)};`;
                 window.location = 'productList.html';
             }).catch((err) => {
-                //console.log(err.data.message);
                 alert('帳號密碼錯誤，請重新輸入');
             });
         }
